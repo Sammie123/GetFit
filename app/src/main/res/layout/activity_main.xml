@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context="com.epicodus.getfit.MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/gym"
+        android:scaleType="centerCrop"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="11dp"
+        android:layout_marginRight="11dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/holo_green_light"
+        android:textSize="37sp"
+        android:textStyle="bold"
+        tools:ignore="RtlHardcoded"
+        tools:text="Welcome to GetFIT"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/findDailyCalorieButton"
+        android:layout_alignEnd="@+id/findDailyCalorieButton" />
+
+    <Button
+        android:id="@+id/findDailyCalorieButton"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@android:color/holo_green_light"
+        android:text="@string/find_calorie_intake"
+        android:textColor="@android:color/background_light"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="457dp" />
+
+    <EditText
+        android:id="@+id/userAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="45dp"
+        android:background="@android:color/holo_orange_light"
+        android:hint="@string/enter_your_age"
+        tools:ignore="TextViewEdits"
+        tools:layout_editor_absoluteX="162dp"
+        tools:layout_editor_absoluteY="245dp"
+        android:layout_above="@+id/userWeight"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/userWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_orange_dark"
+        android:hint="@string/enter_your_weight_in_lbs"
+        tools:layout_editor_absoluteX="162dp"
+        tools:layout_editor_absoluteY="299dp"
+        android:layout_marginBottom="30dp"
+        tools:ignore="TextFields"
+        android:layout_above="@+id/findDailyCalorieButton"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

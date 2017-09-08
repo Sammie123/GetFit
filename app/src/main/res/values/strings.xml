@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">GetFit</string>
+    <string name="button">Button</string>
+    <string name="enter_your_age">Enter your age</string>
+    <string name="enter_your_weight_in_lbs">Enter your weight in lbs</string>
+    <string name="textview">TextView</string>
+    <string name="find_calorie_intake">Find Calorie Intake</string>
+    <string name="user_information">User Information</string>
+</resources>
