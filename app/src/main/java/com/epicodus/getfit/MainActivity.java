@@ -1,8 +1,12 @@
 package com.epicodus.getfit;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.findDailyCalorieButton) Button mFindDailyCalorieButton;
     @Bind(R.id.userAge) EditText mUserAge;
     @Bind(R.id.userWeight) EditText mUserWeight;
+    @Bind(R.id.bottom_navigation) BottomNavigationView mBottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +29,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mFindDailyCalorieButton.setOnClickListener(this);
 
+        mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_add:
+                    case R.id.action_add_2:
+                    case R.id.action_add_3:
+                }
+                return true;
+            }
+        });
     }
 
         @Override

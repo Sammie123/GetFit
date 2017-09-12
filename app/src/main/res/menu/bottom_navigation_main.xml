@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_add"
+        android:enabled="true"
+        android:icon="@drawable/ic_add"
+        android:title="Calorie"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_add_2"
+        android:enabled="true"
+        android:icon="@drawable/ic_add_2"
+        android:title="Nutrition"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_add_3"
+        android:enabled="true"
+        android:icon="@drawable/ic_add_3"
+        android:title="Exercise"
+        app:showAsAction="ifRoom"/>
+</menu>

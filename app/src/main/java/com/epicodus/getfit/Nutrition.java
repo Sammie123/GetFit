@@ -1,8 +1,13 @@
 package com.epicodus.getfit;
 
-/**
- * Created by LMNH on 9/12/17.
- */
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
-public class Nutrition {
+public class Nutrition extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_nutrition);
+    }
 }
