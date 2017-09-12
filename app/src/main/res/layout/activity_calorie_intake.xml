@@ -11,7 +11,11 @@
     <TextView
         android:id="@+id/userInputInformation"
         android:layout_width="160dp"
-        android:layout_height="41dp"
+        android:layout_height="100dp"
+        android:layout_alignEnd="@+id/findExerciseList"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/findExerciseList"
+        android:layout_marginTop="14dp"
         android:text="@string/user_information"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="117dp"
@@ -21,14 +25,11 @@
         android:id="@+id/findExerciseList"
         android:layout_width="155dp"
         android:layout_height="95dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="161dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="64dp"
         android:background="@android:color/holo_blue_dark"
         android:text="See List of Exercise"
         android:textColor="@android:color/black"
-        tools:layout_editor_absoluteY="450dp" />
+        tools:layout_editor_absoluteY="450dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
