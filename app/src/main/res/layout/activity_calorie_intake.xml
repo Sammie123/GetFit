@@ -10,42 +10,43 @@
 
     <TextView
         android:id="@+id/userInputInformation"
-        android:layout_width="160dp"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_alignEnd="@+id/findExerciseList"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/findExerciseList"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="14dp"
-        android:text="@string/user_information"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="117dp"
         tools:layout_editor_absoluteY="52dp" />
 
     <EditText
         android:id="@+id/userAge"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="45dp"
-        android:background="@android:color/holo_orange_light"
-        android:hint="@string/enter_your_age"
-        tools:ignore="TextViewEdits"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="245dp"
         android:layout_above="@+id/userWeight"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="54dp"
+        android:ems="10"
+        android:hint="@string/enter_your_age"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColorLink="@android:color/black" />
 
     <EditText
         android:id="@+id/userWeight"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_orange_dark"
-        android:hint="@string/enter_your_weight_in_lbs"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="299dp"
-        android:layout_marginBottom="30dp"
-        tools:ignore="TextFields"
         android:layout_above="@+id/findDailyCalorieButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/userAge"
+        android:layout_alignStart="@+id/userAge"
+        android:layout_marginBottom="32dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginStart="7dp"
+        android:ems="10"
+        android:hint="@string/enter_your_weight_in_lbs"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColorLink="@android:color/black" />
 
     <Button
         android:id="@+id/findDailyCalorieButton"

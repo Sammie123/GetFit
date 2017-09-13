@@ -23,7 +23,7 @@ public class MyGetFitArrayAdapter extends ArrayAdapter{
     public Object getItem(int position) {
         String exercises = mExercises[position];
         String muscles = mMuscles[position];
-        return String.format("%s \nTarget Muscle: %s", exercises, muscles);
+        return String.format("%s \nTarget Muscle(s): %s", exercises, muscles);
     }
 
     @Override
