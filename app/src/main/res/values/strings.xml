@@ -6,4 +6,5 @@
     <string name="textview">TextView</string>
     <string name="find_calorie_intake">Find Calorie Intake</string>
     <string name="user_information">User Information</string>
+    <string name="welcome_to_getfit">Welcome to GetFIT</string>
 </resources>
