@@ -34,10 +34,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_add:
+                        Intent intent = new Intent(MainActivity.this, CalorieIntake.class);
+                        startActivity(intent);
+                        break;
                     case R.id.action_add_2:
+                        Intent intent2 = new Intent(MainActivity.this, Nutrition.class);
+                        startActivity(intent2);
+                        break;
                     case R.id.action_add_3:
+                        Intent intent3 = new Intent(MainActivity.this, ExerciseProgram.class);
+                        startActivity(intent3);
+                        break;
                 }
-                return true;
+                return false;
             }
         });
     }
