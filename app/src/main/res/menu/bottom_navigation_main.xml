@@ -13,7 +13,7 @@
         android:id="@+id/action_add_2"
         android:enabled="true"
         android:icon="@drawable/ic_add_2"
-        android:title="Nutrition"
+        android:title="Search"
         app:showAsAction="ifRoom"/>
 
     <item

@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent3 = new Intent(MainActivity.this, ExerciseProgram.class);
                         startActivity(intent3);
                         break;
+
                 }
                 return false;
             }
