@@ -2,18 +2,24 @@ package com.epicodus.getfit;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
 
+import com.epicodus.getfit.adapters.FoodListAdapter;
+import com.epicodus.getfit.models.Food;
+import com.epicodus.getfit.services.YummlyService;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import okhttp3.Callback;
 import okhttp3.Call;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import okhttp3.Response;
 
 public class Nutrition extends AppCompatActivity implements View.OnClickListener{
@@ -21,18 +27,16 @@ public class Nutrition extends AppCompatActivity implements View.OnClickListener
     @Bind(R.id.searchFood) EditText mSearchFood;
     @Bind(R.id.search_button) Button mSearchButton;
     @Bind(R.id.listView) ListView mListView;
+    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+    private FoodListAdapter mAdapter;
 
-    private String[] nutritionList = new String[] { "apple", "banana", "orange" };
-
+    public ArrayList<Food> mFoods = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nutrition);
         ButterKnife.bind(this);
-
-        ArrayAdapter arrayAdapter =  new ArrayAdapter(this, android.R.layout.simple_list_item_1, nutritionList);
-        mListView.setAdapter(arrayAdapter);
 
         mSearchButton.setOnClickListener(this);
     }
@@ -53,13 +57,19 @@ public class Nutrition extends AppCompatActivity implements View.OnClickListener
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    String jsonData = response.body().string();
-                    Log.v(TAG, jsonData);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            public void onResponse(Call call, Response response) {
+                mFoods = yummlyService.processResults(response);
+                Nutrition.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mAdapter = new FoodListAdapter(getApplicationContext(), mFoods);
+                        mRecyclerView.setAdapter(mAdapter);
+                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Nutrition.this);
+                        mRecyclerView.setLayoutManager(layoutManager);
+                        mRecyclerView.setHasFixedSize(true);
+                    }
+
+                });
             }
         });
 
