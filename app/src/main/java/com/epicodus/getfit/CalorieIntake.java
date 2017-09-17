@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -39,8 +38,6 @@ public class CalorieIntake extends AppCompatActivity implements View.OnClickList
         Integer weight = Integer.parseInt(mUserWeight.getText().toString());
 
         mUserInputInformation.setText("Based on your age and your current weight, your daily caloric intake is " +  calculateCalorie(age, weight) + " calories");
-
-
 
     }
 }
