@@ -1,5 +1,4 @@
 package com.epicodus.getfit;
 
-public class food {
+public class Food {
 }
-dsf
