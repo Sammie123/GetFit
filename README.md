@@ -4,25 +4,22 @@
 
 ## Description
 
-This application is to introduce people who are new to the fitness world. This application currently ask for the user's age and weight to determine their daily calorie intake. Then they can click to find exercise movement that they would like to do that also displays target muscle. Future plans include a nutrition guide and a more complete list of exercise and implement a method for calculating their daily calorie requirement.
+This application is to introduce people who are new to the fitness world. This application currently ask for the user's age and weight to determine their daily calorie intake. Then they can click to find exercise movement that they would like to do that also displays target muscle. Future plans include a nutrition guide and a more complete list of exercise. Implement an API that displays calories, fats, carbs, and proteins which is then used to subtract from user's personal nutrition information.
 
 ## System Requirements
-
 * Android Studio
 
 ## Installation
 1. Open Android Studio
-2. Scroll down and click clone from github
-3. Enter github information and paste project URL
+2. Scroll down and click opening an existing Android studio project
+3. Clone project URL
 
 ## Technologies Used
-
-*Java
-*Android Studio
+1. Java
+2. Android Studio
 
 ## Errors
-
-*Currently, the emulator is not working.
+1. Displaying API information
 
 ### Legal
 
