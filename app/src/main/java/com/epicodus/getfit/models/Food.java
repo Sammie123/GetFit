@@ -1,15 +1,21 @@
 package com.epicodus.getfit.models;
 
 public class Food {
-    private String mName;
+    private String mRecipeName;
+    private String mImage;
 
-    public Food(String name) {
-        this.mName = name;
+    public Food(String name, String image) {
+        this.mRecipeName = name;
+        this.mImage = image;
     }
 
 
     public String getName() {
-        return mName;
+        return mRecipeName;
+    }
+
+    public String getImage() {
+        return mImage;
     }
 
 }

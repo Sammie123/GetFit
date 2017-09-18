@@ -44,10 +44,10 @@ public class Nutrition extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View view) {
         String food = mSearchFood.getText().toString();
-        getFood(food);
+        getFoods(food);
     }
 
-    private void getFood(String food) {
+    private void getFoods(String food) {
         final YummlyService yummlyService = new YummlyService();
         yummlyService.findFood(food, new Callback() {
 
@@ -63,10 +63,10 @@ public class Nutrition extends AppCompatActivity implements View.OnClickListener
                     @Override
                     public void run() {
                         mAdapter = new FoodListAdapter(getApplicationContext(), mFoods);
-                        mRecyclerView.setAdapter(mAdapter);
                         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Nutrition.this);
                         mRecyclerView.setLayoutManager(layoutManager);
                         mRecyclerView.setHasFixedSize(true);
+                        mRecyclerView.setAdapter(mAdapter);
                     }
 
                 });
@@ -74,6 +74,7 @@ public class Nutrition extends AppCompatActivity implements View.OnClickListener
         });
 
     }
+
 }
 
 

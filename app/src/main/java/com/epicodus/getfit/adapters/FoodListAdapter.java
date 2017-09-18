@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.epicodus.getfit.R;
 import com.epicodus.getfit.models.Food;
 
@@ -19,6 +18,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
     private ArrayList<Food> mFoods = new ArrayList<>();
     private Context mContext;
 
+
     public FoodListAdapter(Context context, ArrayList<Food> foods) {
         mContext = context;
         mFoods = foods;
@@ -26,7 +26,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
 
     @Override
     public FoodListAdapter.FoodViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_detail, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_food, parent, false);
         FoodViewHolder viewHolder = new FoodViewHolder(view);
         return viewHolder;
     }
@@ -41,9 +41,8 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
         return mFoods.size();
     }
 
-    public class FoodViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.nameTextView) TextView mNameTextView;
-
+    public class FoodViewHolder extends RecyclerView.ViewHolder{
+        @Bind(R.id.foodNameTextView) TextView mFoodNameTextView;
         private Context mContext;
 
         public FoodViewHolder(View itemView) {
@@ -53,7 +52,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
         }
 
         public void bindFood(Food food) {
-            mNameTextView.setText(food.getName());
+            mFoodNameTextView.setText(food.getName());
         }
     }
 }

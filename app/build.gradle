@@ -25,7 +25,7 @@ android {
         }
 
         buildTypes.each {
-//            it.buildConfigField 'String', 'YUMMLY_APP_ID', YummlyAppId
+            it.buildConfigField 'String', 'YUMMLY_APP_ID', YummlyAppId
             it.buildConfigField 'String', 'YUMMLY_APP_KEY', YummlyAppKey
         }
     }

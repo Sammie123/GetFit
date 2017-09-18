@@ -21,7 +21,6 @@ import okhttp3.Response;
 
 import static android.content.ContentValues.TAG;
 
-
 public class YummlyService {
     public static void findFood(String food, Callback callback) {
 
@@ -29,9 +28,9 @@ public class YummlyService {
                 .build();
 
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.YUMMLY_BASE_URL).newBuilder();
+        urlBuilder.addQueryParameter("_app_id", Constants.YUMMLY_APP_ID);
+        urlBuilder.addQueryParameter("_app_key", Constants.YUMMLY_APP_KEY);
         urlBuilder.addQueryParameter(Constants.YUMMLY_SEARCH, food);
-//        urlBuilder.addQueryParameter("_app_id", Constants.YUMMLY_APP_ID);
-        urlBuilder.addQueryParameter("api_key", Constants.YUMMLY_APP_KEY);
 
         String url = urlBuilder.build().toString();
         Log.v(TAG, url);
@@ -51,13 +50,14 @@ public class YummlyService {
                 String jsonData = response.body().string();
                 if (response.isSuccessful()) {
                     JSONObject yummlyJSON = new JSONObject(jsonData);
-                    JSONArray itemJSON = yummlyJSON.getJSONArray("item");
-                    for (int i = 0; i < itemJSON.length(); i++) {
-                        JSONObject mealJSON = itemJSON.getJSONObject(i);
-                        String name = mealJSON.getString("name");
+                    JSONArray matchesJSON = yummlyJSON.getJSONArray("matches");
+                    for (int i = 0; i < matchesJSON.length(); i++) {
+                        JSONObject foodJSON = matchesJSON.getJSONObject(i);
+                        String name = foodJSON.getString("recipeName");
+                        String image = foodJSON.getString("imageUrlsBySize");
 
-                        Food food1 = new Food(name);
-                        foods.add(food1);
+                        Food food = new Food(name, image);
+                        foods.add(food);
                     }
                 }
             } catch (IOException e) {

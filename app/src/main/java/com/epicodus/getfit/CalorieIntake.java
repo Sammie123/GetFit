@@ -59,9 +59,11 @@ public class CalorieIntake extends AppCompatActivity implements View.OnClickList
 //        });
 
 
-                if(Integer.parseInt(mUserAge.getText().toString()) < 0) {
+                if(mUserAge.getText().toString().length() == 0) {
                     mUserAge.setError("Invalid Response");
                     mUserAge.requestFocus();
+                } else {
+                    mUserAge.setError("hello");
                 }
 
                 Log.v(TAG, mUserAge.getText().toString());
