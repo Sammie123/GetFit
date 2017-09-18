@@ -8,4 +8,14 @@
     <string name="user_information">User Information</string>
     <string name="welcome_to_getfit">Welcome to GetFIT</string>
     <string name="search">Search</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="calories">Calories</string>
+    <string name="carboyhydrate">Carboyhydrate</string>
+    <string name="fat">Fat</string>
+    <string name="food_name">Food Name</string>
+    <string name="protein">Protein</string>
+    <string name="save">Save</string>
+    <string name="view_online">View Online</string>
 </resources>

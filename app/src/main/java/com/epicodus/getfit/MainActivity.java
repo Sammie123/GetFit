@@ -3,12 +3,10 @@ package com.epicodus.getfit;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
-import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import butterknife.Bind;
@@ -36,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case R.id.action_add_2:
-                        Intent intent2 = new Intent(MainActivity.this, Nutrition.class);
+                        Intent intent2 = new Intent(MainActivity.this, NutritionListActivity.class);
                         startActivity(intent2);
                         break;
                     case R.id.action_add_3:

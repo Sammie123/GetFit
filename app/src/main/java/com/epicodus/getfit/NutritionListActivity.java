@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.ArrayAdapter;
 
 import com.epicodus.getfit.adapters.FoodListAdapter;
 import com.epicodus.getfit.models.Food;
@@ -22,8 +21,8 @@ import java.util.ArrayList;
 
 import okhttp3.Response;
 
-public class Nutrition extends AppCompatActivity implements View.OnClickListener{
-    public static final String TAG = Nutrition.class.getSimpleName();
+public class NutritionListActivity extends AppCompatActivity implements View.OnClickListener{
+    public static final String TAG = NutritionListActivity.class.getSimpleName();
     @Bind(R.id.searchFood) EditText mSearchFood;
     @Bind(R.id.search_button) Button mSearchButton;
     @Bind(R.id.listView) ListView mListView;
@@ -59,11 +58,11 @@ public class Nutrition extends AppCompatActivity implements View.OnClickListener
             @Override
             public void onResponse(Call call, Response response) {
                 mFoods = yummlyService.processResults(response);
-                Nutrition.this.runOnUiThread(new Runnable() {
+                NutritionListActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         mAdapter = new FoodListAdapter(getApplicationContext(), mFoods);
-                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Nutrition.this);
+                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(NutritionListActivity.this);
                         mRecyclerView.setLayoutManager(layoutManager);
                         mRecyclerView.setHasFixedSize(true);
                         mRecyclerView.setAdapter(mAdapter);

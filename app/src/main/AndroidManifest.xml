@@ -3,9 +3,8 @@
     package="com.epicodus.getfit">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -31,7 +30,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.epicodus.getfit.CalorieIntake" />
         </activity>
-        <activity android:name=".Nutrition" />
+        <activity android:name=".NutritionListActivity" />
+        <activity android:name=".NutritionDetailActivity"></activity>
     </application>
 
 </manifest>
