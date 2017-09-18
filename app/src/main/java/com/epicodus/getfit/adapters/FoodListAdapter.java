@@ -20,7 +20,6 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
     private ArrayList<Food> mFoods = new ArrayList<>();
     private Context mContext;
 
-
     public FoodListAdapter(Context context, ArrayList<Food> foods) {
         mContext = context;
         mFoods = foods;
