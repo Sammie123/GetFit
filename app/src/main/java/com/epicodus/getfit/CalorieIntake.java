@@ -34,8 +34,6 @@ public class CalorieIntake extends AppCompatActivity implements View.OnClickList
         mFindDailyCalorieButton.setOnClickListener(this);
     }
 
-
-
     @Override
     public void onClick(View view) {
         Integer age = Integer.parseInt(mUserAge.getText().toString());
