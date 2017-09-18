@@ -41,37 +41,40 @@ public class CalorieIntake extends AppCompatActivity implements View.OnClickList
         Integer age = Integer.parseInt(mUserAge.getText().toString());
         Integer weight = Integer.parseInt(mUserWeight.getText().toString());
 
-        mUserAge.addTextChangedListener(new TextWatcher() {
+//        mUserAge.addTextChangedListener(new TextWatcher() {
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {}
+//
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start,
+//                                          int count, int after) {}
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start,
+//                                      int before, int count) {
+//                if(s.length() == 0) {
+//                    mUserAge.setError("Invalid Response");
+//                }
+//
+//            }
+//        });
 
-            @Override
-            public void afterTextChanged(Editable s) {}
 
-            @Override
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start,
-                                      int before, int count) {
-                if(s.length() == 0) {
+                if(Integer.parseInt(mUserAge.getText().toString()) < 0) {
                     mUserAge.setError("Invalid Response");
+                    mUserAge.requestFocus();
                 }
 
-            }
-        });
+                Log.v(TAG, mUserAge.getText().toString());
 
-//        final String age1 = mUserAge.getText().toString();
-//        final String weight1 = mUserWeight.getText().toString();
-//
-//            if(mUserAge.getText().toString().length() == 0 ) {
-//                mUserAge.setError("Invalid Response");
-//                mUserAge.requestFocus();
-//            }
+                if(mUserWeight.getText().toString().length() < 0) {
+                    mUserWeight.setError("Invalid Response");
+                    mUserWeight.requestFocus();
+                }
+                Log.v(TAG, mUserWeight.getText().toString());
 
-//            if(mUserWeight.getText().toString().length() == 0 ) {
-//                mUserWeight.setError("Invalid Response");
-//                mUserWeight.requestFocus();
-//            }
+
 
         mUserInputInformation.setText("Based on your age and your current weight, your daily caloric intake is " +  calculateCalorie(age, weight) + " calories");
 
