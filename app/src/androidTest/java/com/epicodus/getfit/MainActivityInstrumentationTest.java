@@ -1,8 +1,13 @@
 package com.epicodus.getfit;
 
-/**
- * Created by LMNH on 9/17/17.
- */
+import android.support.test.rule.ActivityTestRule;
+
+import org.junit.Rule;
 
 public class MainActivityInstrumentationTest {
+
+    @Rule
+    public ActivityTestRule<MainActivity> activityTestRule =
+            new ActivityTestRule<>(MainActivity.class);
+
 }
