@@ -1,6 +1,7 @@
 package com.epicodus.getfit;
 
-
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,12 +17,13 @@ import com.squareup.picasso.Picasso;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class NutritionDetailFragment extends Fragment {
+public class NutritionDetailFragment extends Fragment implements  View.OnClickListener{
+    private static final int MAX_WIDTH = 400;
+    private static final int MAX_HEIGHT = 300;
     @Bind(R.id.foodImageView) ImageView mImageLabel;
     @Bind(R.id.foodNameTextView) TextView mFoodNameTextView;
 
     private Food mFood;
-
 
     public static NutritionDetailFragment newInstance(Food food) {
         NutritionDetailFragment nutritionDetailFragment = new NutritionDetailFragment();
@@ -43,10 +45,21 @@ public class NutritionDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_nutrition_detail, container, false);
         ButterKnife.bind(this,view);
 
+        mImageLabel.setOnClickListener(this);
 
-        Picasso.with(view.getContext()).load(mFood.getImage()).into(mImageLabel);
+
+        Picasso.with(view.getContext()).load(mFood.getImage())
+                .resize(MAX_WIDTH, MAX_HEIGHT)
+                .centerCrop()
+                .into(mImageLabel);
         mFoodNameTextView.setText(mFood.getName());
         return view;
     }
-
+    @Override
+    public void onClick(View v) {
+        if (v == mImageLabel) {
+            Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.myfitnesspal.com"));
+            startActivity(webIntent);
+        }
+    }
 }
