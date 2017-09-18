@@ -5,9 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.epicodus.getfit.R;
 import com.epicodus.getfit.models.Food;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -43,6 +45,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
 
     public class FoodViewHolder extends RecyclerView.ViewHolder{
         @Bind(R.id.foodNameTextView) TextView mFoodNameTextView;
+        @Bind(R.id.foodImageView) ImageView mFoodImageView;
         private Context mContext;
 
         public FoodViewHolder(View itemView) {
@@ -52,6 +55,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodVi
         }
 
         public void bindFood(Food food) {
+            Picasso.with(mContext).load(food.getImage()).into(mFoodImageView);
             mFoodNameTextView.setText(food.getName());
         }
     }
