@@ -1,8 +1,14 @@
 package com.epicodus.getfit.models;
 
+import org.parceler.Parcel;
+import java.util.ArrayList;
+
+@Parcel
 public class Food {
-    private String mRecipeName;
-    private String mImage;
+     String mRecipeName;
+     String mImage;
+
+    public Food() {}
 
     public Food(String name, String image) {
         this.mRecipeName = name;
