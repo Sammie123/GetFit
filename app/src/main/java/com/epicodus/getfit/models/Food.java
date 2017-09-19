@@ -4,23 +4,22 @@ import org.parceler.Parcel;
 
 @Parcel
 public class Food {
-     String Name;
-     String Image;
+     String RecipeName;
+     String ImageUrl;
 
     public Food() {}
 
     public Food(String name, String image) {
-        this.Name = name;
-        this.Image = image;
+        this.RecipeName = name;
+        this.ImageUrl = image;
     }
 
     public String getName() {
 
-        return Name;
+        return RecipeName;
     }
 
     public String getImage() {
-        return Image;
+        return ImageUrl;
     }
-
 }
