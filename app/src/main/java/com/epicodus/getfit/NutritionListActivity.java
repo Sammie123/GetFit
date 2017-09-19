@@ -1,9 +1,12 @@
 package com.epicodus.getfit;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,8 +31,10 @@ public class NutritionListActivity extends AppCompatActivity implements View.OnC
     @Bind(R.id.listView) ListView mListView;
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
     private FoodListAdapter mAdapter;
-
     public ArrayList<Food> mFoods = new ArrayList<>();
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
+    private String mRecentSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +42,30 @@ public class NutritionListActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_nutrition);
         ButterKnife.bind(this);
 
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
+
         mSearchButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        String food = mSearchFood.getText().toString();
-        getFoods(food);
+        if (view == mSearchButton) {
+            String food = mSearchFood.getText().toString();
+            if(!(food).equals("")) {
+                addToSharedPreferences(food);
+            }
+
+            mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+            mRecentSearch = mSharedPreferences.getString(Constants.PREFERENCES_SEARCH_KEY, null);
+            if (mRecentSearch != null) {
+                getFoods(mRecentSearch);
+            }
+        }
+    }
+
+    private void addToSharedPreferences(String food) {
+        mEditor.putString(Constants.PREFERENCES_SEARCH_KEY, food).apply();
     }
 
     private void getFoods(String food) {
@@ -71,9 +93,7 @@ public class NutritionListActivity extends AppCompatActivity implements View.OnC
                 });
             }
         });
-
     }
-
 }
 
 

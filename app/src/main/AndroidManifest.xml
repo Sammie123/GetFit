@@ -25,11 +25,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.epicodus.getfit.MainActivity" />
         </activity>
-        <activity android:name=".ExerciseProgram">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.epicodus.getfit.CalorieIntake" />
-        </activity>
         <activity android:name=".NutritionListActivity" />
         <activity android:name=".NutritionDetailActivity"></activity>
     </application>
