@@ -1,28 +1,26 @@
 package com.epicodus.getfit.models;
 
 import org.parceler.Parcel;
-import java.util.ArrayList;
 
 @Parcel
 public class Food {
-     String mRecipeName;
-     String mImage;
+     String Name;
+     String Image;
 
     public Food() {}
 
     public Food(String name, String image) {
-        this.mRecipeName = name;
-        this.mImage = image;
+        this.Name = name;
+        this.Image = image;
     }
-
 
     public String getName() {
 
-        return mRecipeName;
+        return Name;
     }
 
     public String getImage() {
-        return mImage;
+        return Image;
     }
 
 }

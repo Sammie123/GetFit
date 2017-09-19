@@ -7,12 +7,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.epicodus.getfit.models.Food;
 
 import org.parceler.Parcels;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -22,6 +27,7 @@ public class NutritionDetailFragment extends Fragment implements  View.OnClickLi
     private static final int MAX_HEIGHT = 300;
     @Bind(R.id.foodImageView) ImageView mImageLabel;
     @Bind(R.id.foodNameTextView) TextView mFoodNameTextView;
+    @Bind(R.id.saveFoodButton) Button mSaveFoodButton;
 
     private Food mFood;
 
@@ -46,7 +52,7 @@ public class NutritionDetailFragment extends Fragment implements  View.OnClickLi
         ButterKnife.bind(this,view);
 
         mImageLabel.setOnClickListener(this);
-
+        mSaveFoodButton.setOnClickListener(this);
 
         Picasso.with(view.getContext()).load(mFood.getImage())
                 .resize(MAX_WIDTH, MAX_HEIGHT)
@@ -55,11 +61,20 @@ public class NutritionDetailFragment extends Fragment implements  View.OnClickLi
         mFoodNameTextView.setText(mFood.getName());
         return view;
     }
+
     @Override
     public void onClick(View v) {
         if (v == mImageLabel) {
             Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.myfitnesspal.com"));
             startActivity(webIntent);
+        }
+
+        if (v == mSaveFoodButton) {
+            DatabaseReference foodRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_FOOD);
+            foodRef.push().setValue(mFood);
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
     }
 }

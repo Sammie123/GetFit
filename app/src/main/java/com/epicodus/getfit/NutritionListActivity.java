@@ -15,6 +15,12 @@ import android.widget.ListView;
 import com.epicodus.getfit.adapters.FoodListAdapter;
 import com.epicodus.getfit.models.Food;
 import com.epicodus.getfit.services.YummlyService;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import okhttp3.Callback;
@@ -24,49 +30,91 @@ import java.util.ArrayList;
 
 import okhttp3.Response;
 
-public class NutritionListActivity extends AppCompatActivity implements View.OnClickListener{
+public class NutritionListActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String TAG = NutritionListActivity.class.getSimpleName();
-    @Bind(R.id.searchFood) EditText mSearchFood;
-    @Bind(R.id.search_button) Button mSearchButton;
-    @Bind(R.id.listView) ListView mListView;
-    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+    @Bind(R.id.searchFood)
+    EditText mSearchFood;
+    @Bind(R.id.search_button)
+    Button mSearchButton;
+    @Bind(R.id.listView)
+    ListView mListView;
+    @Bind(R.id.recyclerView)
+    RecyclerView mRecyclerView;
     private FoodListAdapter mAdapter;
     public ArrayList<Food> mFoods = new ArrayList<>();
-    private SharedPreferences mSharedPreferences;
-    private SharedPreferences.Editor mEditor;
+    //    private SharedPreferences mSharedPreferences;
+//    private SharedPreferences.Editor mEditor;
+    private DatabaseReference mSearchFoodReference;
     private String mRecentSearch;
+    private ValueEventListener mSearchFoodReferenceListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mSearchFoodReference = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child(Constants.FIREBASE_CHILD_SEARCHED_FOOD);
+
+        mSearchFoodReferenceListener= mSearchFoodReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot foodSnapshot : dataSnapshot.getChildren()) {
+                    String food = foodSnapshot.getValue().toString();
+                    Log.d("Foods updated", "food: " + food);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nutrition);
         ButterKnife.bind(this);
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mEditor = mSharedPreferences.edit();
+
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mEditor = mSharedPreferences.edit();
 
         mSearchButton.setOnClickListener(this);
     }
+
 
     @Override
     public void onClick(View view) {
         if (view == mSearchButton) {
             String food = mSearchFood.getText().toString();
-            if(!(food).equals("")) {
-                addToSharedPreferences(food);
-            }
+            saveFoodToFirebase(food);
+            getFoods(food);
+//            if(!(food).equals("")) {
+//                addToSharedPreferences(food);
+//            }
 
-            mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-            mRecentSearch = mSharedPreferences.getString(Constants.PREFERENCES_SEARCH_KEY, null);
-            if (mRecentSearch != null) {
-                getFoods(mRecentSearch);
-            }
+//            mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//            mRecentSearch = mSharedPreferences.getString(Constants.PREFERENCES_SEARCH_KEY, null);
+//            if (mRecentSearch != null) {
+//                getFoods(mRecentSearch);
+//            }
         }
     }
 
-    private void addToSharedPreferences(String food) {
-        mEditor.putString(Constants.PREFERENCES_SEARCH_KEY, food).apply();
+    public void saveFoodToFirebase(String food) {
+        mSearchFoodReference.push().setValue(food);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mSearchFoodReference.removeEventListener(mSearchFoodReferenceListener);
+    }
+
+
+
+//    private void addToSharedPreferences(String food) {
+//        mEditor.putString(Constants.PREFERENCES_SEARCH_KEY, food).apply();
+//    }
 
     private void getFoods(String food) {
         final YummlyService yummlyService = new YummlyService();

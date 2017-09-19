@@ -6,4 +6,6 @@ public class Constants {
     public static final String YUMMLY_BASE_URL = "http://api.yummly.com/v1/api/recipes?";
     public static final String YUMMLY_SEARCH = "q";
     public static final String PREFERENCES_SEARCH_KEY = "q";
+    public static final String FIREBASE_CHILD_SEARCHED_FOOD = "searchedFood";
+    public static final String FIREBASE_CHILD_FOOD = "foods";
 }
