@@ -1,11 +1,24 @@
 package com.epicodus.getfit.adapters;
 
+import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.epicodus.getfit.Constants;
 import com.epicodus.getfit.NutritionDetailActivity;
+import com.epicodus.getfit.R;
+import com.epicodus.getfit.models.Food;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 

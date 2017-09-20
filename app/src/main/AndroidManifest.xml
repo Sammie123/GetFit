@@ -26,7 +26,8 @@
                 android:value="com.epicodus.getfit.MainActivity" />
         </activity>
         <activity android:name=".NutritionListActivity" />
-        <activity android:name=".NutritionDetailActivity"></activity>
+        <activity android:name=".NutritionDetailActivity" />
+        <activity android:name=".SaveFoodListActivity"></activity>
     </application>
 
 </manifest>
