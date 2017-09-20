@@ -9,9 +9,9 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="568dp"
+        android:layout_above="@+id/search_button"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true" />
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:id="@+id/searchFood"
@@ -22,10 +22,10 @@
         android:inputType="text"
         android:textAlignment="center"
         android:textColorLink="@android:color/black"
-        android:layout_marginTop="13dp"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/recyclerView"
+        android:layout_alignParentTop="true" />
 
     <Button
         android:id="@+id/search_button"
