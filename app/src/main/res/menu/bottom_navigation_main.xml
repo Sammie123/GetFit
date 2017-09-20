@@ -20,6 +20,6 @@
         android:id="@+id/action_add_3"
         android:enabled="true"
         android:icon="@drawable/ic_add_3"
-        android:title="Exercise"
+        android:title="Saved Recipe"
         app:showAsAction="ifRoom"/>
 </menu>

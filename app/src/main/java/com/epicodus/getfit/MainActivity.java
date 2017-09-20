@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent2 = new Intent(MainActivity.this, NutritionListActivity.class);
                         startActivity(intent2);
                         break;
-//                    case R.id.action_add_3:
-//                        Intent intent3 = new Intent(MainActivity.this, ExerciseProgram.class);
-//                        startActivity(intent3);
-//                        break;
+                    case R.id.action_add_3:
+                        Intent intent3 = new Intent(MainActivity.this, SaveFoodListActivity.class);
+                        startActivity(intent3);
+                        break;
 
                 }
                 return false;
