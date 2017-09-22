@@ -18,4 +18,5 @@
     <string name="protein">Protein</string>
     <string name="save">Save</string>
     <string name="view_online">View Online</string>
+    <string name="logout">Logout</string>
 </resources>
