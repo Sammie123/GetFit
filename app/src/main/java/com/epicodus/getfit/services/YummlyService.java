@@ -56,8 +56,13 @@ public class YummlyService {
                         String name = foodJSON.getString("recipeName");
                         String image = foodJSON.getJSONObject("imageUrlsBySize")
                         .getString("90");
+                        ArrayList<String> ingredients = new ArrayList<>();
+                        JSONArray JSONingredients = foodJSON.getJSONArray("ingredients");
+                        for (int y = 0; y < JSONingredients.length(); y++) {
+                            ingredients.add(JSONingredients.get(y).toString());
+                        }
                         Log.v(TAG, image);
-                        Food food = new Food(name, image);
+                        Food food = new Food(name, image, ingredients);
                         foods.add(food);
                     }
                 }
