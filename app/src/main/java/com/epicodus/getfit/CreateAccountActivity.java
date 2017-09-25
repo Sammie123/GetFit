@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -28,9 +30,11 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     @Bind(R.id.loginTextView) TextView mLoginTextView;
     @Bind(R.id.createUserButton) Button mCreateUserButton;
 
+
     public static final String TAG = CreateAccountActivity.class.getSimpleName();
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private String mName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,13 +90,63 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         }
     }
 
+    private boolean isEmailValid(String email) {
+        boolean isEmailGood = (email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches());
+        if(!isEmailGood) {
+            mEmailEditText.setError("Please enter a valid email address");
+            return false;
+        }
+        return isEmailGood;
+    }
 
+    private boolean isNameValid(String name) {
+        if (name.equals("")) {
+            mNameEditText.setError(("Please enter a name"));
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isPasswordValid(String password, String confirmPassword) {
+        if (password.length() < 6) {
+            mPasswordEditText.setError("Please enter six or more characters");
+            return false;
+        } else if (!password.equals(confirmPassword)) {
+            mPasswordEditText.setError("Passwords do not match");
+            return false;
+        }
+        return true;
+    }
+//
+//    private void createUserProfile(final FirebaseUser user) {
+//        UserProfileChangeRequest addProfileName = new UserProfileChangeRequest().Builder()
+//                .setDisplayName(mName)
+//                .build();
+//        user.updateProfile(addProfileName)
+//                .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        if (task.isSuccessful()) {
+//                            createUserProfile(task.getResult().getUser());
+//                        } else {
+//
+//                        }
+//                    }
+//                });
+//    }
 
     private void createNewUser() {
-    final String name = mNameEditText.getText().toString().trim();
+    mName = mNameEditText.getText().toString().trim();
     final String email = mEmailEditText.getText().toString().trim();
     String password = mPasswordEditText.getText().toString().trim();
     String confirmPassword = mConfirmPasswordEditText.getText().toString().trim();
+
+        boolean validEmail = isEmailValid(email);
+        boolean validName = isNameValid(mName);
+        boolean validPassword = isPasswordValid(password, confirmPassword);
+        if (!validEmail || !validName || !validPassword) return;
+
+
 
     mAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
