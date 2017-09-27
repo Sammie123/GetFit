@@ -11,11 +11,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.epicodus.getfit.models.Food;
-
 import org.parceler.Parcels;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -70,10 +70,17 @@ public class NutritionDetailFragment extends Fragment implements  View.OnClickLi
         }
 
         if (v == mSaveFoodButton) {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
             DatabaseReference foodRef = FirebaseDatabase
                     .getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_FOOD);
-            foodRef.push().setValue(mFood);
+                    .getReference(Constants.FIREBASE_CHILD_FOOD)
+                    .child(uid);
+            DatabaseReference pushRef = foodRef.push();
+            String pushId = pushRef.getKey();
+            mFood.setPushId(pushId);
+            pushRef.setValue(mFood);
+
             Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
     }
