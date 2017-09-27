@@ -8,7 +8,6 @@ import com.epicodus.getfit.models.Food;
 
 import java.util.ArrayList;
 
-
 public class NutritionPagerAdapter extends FragmentPagerAdapter{
     private ArrayList<Food> mFoods;
 
