@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import com.epicodus.getfit.adapters.FirebaseFoodViewHolder;
 import com.epicodus.getfit.models.Food;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -30,6 +32,15 @@ public class SaveFoodListActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mFoodReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_FOOD);
+        setUpFirebaseAdapter();
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
+        mFoodReference = FirebaseDatabase
+                .getInstance()
+                .getReference(Constants.FIREBASE_CHILD_FOOD)
+                .child(uid);
         setUpFirebaseAdapter();
     }
 
