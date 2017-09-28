@@ -48,7 +48,7 @@ public class SaveFoodListActivity extends AppCompatActivity {
 
     private void setUpFirebaseAdapter() {
         mFirebaseAdapter = new FirebaseRecyclerAdapter<Food, FirebaseFoodViewHolder>
-                (Food.class, R.layout.list_food, FirebaseFoodViewHolder.class, mFoodReference) {
+                (Food.class, R.layout.food_list_item_drag, FirebaseFoodViewHolder.class, mFoodReference) {
 
             @Override
             protected void populateViewHolder(FirebaseFoodViewHolder viewHolder, Food model, int position) {
