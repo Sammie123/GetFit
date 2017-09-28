@@ -25,11 +25,11 @@ public class MainActivityTest {
         activity = Robolectric.setupActivity(MainActivity.class);
     }
 
-    @Test
-    public void validateTextViewContent() {
-        TextView titleGetFit = (TextView) activity.findViewById(R.id.titleGetFit);
-        assertTrue("Welcome to GetFIT".equals(titleGetFit.getText().toString()));
-    }
+//    @Test
+//    public void validateTextViewContent() {
+//        TextView titleGetFit = (TextView) activity.findViewById(R.id.titleGetFit);
+//        assertTrue("Welcome to GetFIT".equals(titleGetFit.getText().toString()));
+//    }
 
 //    @Test
 //    public void secondActivityStarted() {

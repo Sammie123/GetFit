@@ -4,20 +4,21 @@ import org.parceler.Parcel;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 @Parcel
 public class Food {
      String RecipeName;
      String ImageUrl;
-     ArrayList<String> Ingredients;
-     private String pushId;
+     List<String> RecipeIngredients = new ArrayList<>();
+     String pushId;
 
     public Food() {}
 
     public Food(String name, String image, ArrayList<String> ingredients) {
         this.RecipeName = name;
         this.ImageUrl = image;
-        this.Ingredients = ingredients;
+        this.RecipeIngredients = ingredients;
     }
 
     public String getName() {
@@ -30,9 +31,9 @@ public class Food {
         return ImageUrl;
     }
 
-    public ArrayList<String> getIngredients() {
+    public List<String> getIngredients() {
 
-        return Ingredients;
+        return RecipeIngredients;
     }
 
     public String getPushId() {

@@ -114,10 +114,6 @@ public class NutritionListActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void saveFoodToFirebase(String food) {
-        mSearchFoodReference.push().setValue(food);
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();

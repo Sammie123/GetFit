@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.epicodus.getfit.models.Food;
 import org.parceler.Parcels;
-
+import org.w3c.dom.Text;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -23,14 +22,13 @@ import com.squareup.picasso.Picasso;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-import static android.content.ContentValues.TAG;
-
 public class NutritionDetailFragment extends Fragment implements  View.OnClickListener{
     private static final int MAX_WIDTH = 400;
     private static final int MAX_HEIGHT = 300;
     @Bind(R.id.foodImageView) ImageView mImageLabel;
     @Bind(R.id.foodNameTextView) TextView mFoodNameTextView;
     @Bind(R.id.saveFoodButton) Button mSaveFoodButton;
+    @Bind(R.id.ingredientsTextView) TextView mIngredientsTextView;
 
     private Food mFood;
 
@@ -62,6 +60,7 @@ public class NutritionDetailFragment extends Fragment implements  View.OnClickLi
                 .centerCrop()
                 .into(mImageLabel);
         mFoodNameTextView.setText(mFood.getName());
+        mIngredientsTextView.setText(android.text.TextUtils.join(", ", mFood.getIngredients()));
         return view;
     }
 
@@ -76,18 +75,16 @@ public class NutritionDetailFragment extends Fragment implements  View.OnClickLi
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();
 
-            DatabaseReference restaurantRef = FirebaseDatabase
+            DatabaseReference foodRef = FirebaseDatabase
                     .getInstance()
                     .getReference(Constants.FIREBASE_CHILD_FOOD)
                     .child(uid);
 
-            DatabaseReference pushRef = restaurantRef.push();
+            DatabaseReference pushRef = foodRef.push();
             String pushId = pushRef.getKey();
             mFood.setPushId(pushId);
             pushRef.setValue(mFood);
             Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
-
-
         }
     }
 }

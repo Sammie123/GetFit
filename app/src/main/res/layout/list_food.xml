@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -8,7 +9,8 @@
         android:layout_width="130dp"
         android:layout_height="100dp"
         android:id="@+id/foodImageView"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:contentDescription="" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -24,7 +26,8 @@
             android:textSize="20dp"
             android:textStyle="bold"
             android:text="Food Name"
-            android:textColor="@color/colorPrimary"/>
+            android:textColor="@color/colorPrimary"
+            tools:ignore="HardcodedText" />
 
         <RelativeLayout
             android:layout_width="match_parent"

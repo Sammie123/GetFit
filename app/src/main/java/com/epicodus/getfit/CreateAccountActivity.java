@@ -44,6 +44,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_create_account);
 
         ButterKnife.bind(this);
+        mLoginTextView.setOnClickListener(this);
         mCreateUserButton.setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
         createAuthStateListener();
@@ -72,6 +73,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
             startActivity(intent);
             finish();
         }
+
         if (v == mCreateUserButton) {
             createNewUser();
         }
