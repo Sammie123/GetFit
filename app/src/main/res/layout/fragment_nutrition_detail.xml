@@ -68,50 +68,6 @@
                     android:layout_marginBottom="10dp"
                     android:gravity="center" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/calories"
-                    android:id="@+id/caloriesTextView"
-                    android:drawablePadding="4dp"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/fat"
-                    android:drawablePadding="4dp"
-                    android:id="@+id/fatTextView"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center_vertical"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/carboyhydrate"
-                    android:drawablePadding="4dp"
-                    android:id="@+id/CarboyhydrateTextView"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center_vertical"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/protein"
-                    android:drawablePadding="4dp"
-                    android:id="@+id/proteinTextView"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center_vertical"/>
-
             </LinearLayout>
 
             <Button

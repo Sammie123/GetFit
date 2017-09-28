@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
+import static android.content.ContentValues.TAG;
 
 public class NutritionDetailFragment extends Fragment implements  View.OnClickListener{
     private static final int MAX_WIDTH = 400;
@@ -72,16 +75,19 @@ public class NutritionDetailFragment extends Fragment implements  View.OnClickLi
         if (v == mSaveFoodButton) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();
-            DatabaseReference foodRef = FirebaseDatabase
+
+            DatabaseReference restaurantRef = FirebaseDatabase
                     .getInstance()
                     .getReference(Constants.FIREBASE_CHILD_FOOD)
                     .child(uid);
-            DatabaseReference pushRef = foodRef.push();
+
+            DatabaseReference pushRef = restaurantRef.push();
             String pushId = pushRef.getKey();
             mFood.setPushId(pushId);
             pushRef.setValue(mFood);
-
             Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+
+
         }
     }
 }

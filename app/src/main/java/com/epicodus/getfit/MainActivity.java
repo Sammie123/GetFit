@@ -19,7 +19,6 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
     @Bind(R.id.bottom_navigation) BottomNavigationView mBottomNavigationView;
-    @Bind(R.id.titleGetFit) TextView mTitleGetFit;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -30,9 +29,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
-        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/font.ttf");
-        mTitleGetFit.setTypeface(font);
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {

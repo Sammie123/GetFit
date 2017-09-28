@@ -31,10 +31,12 @@ public class Food {
     }
 
     public ArrayList<String> getIngredients() {
+
         return Ingredients;
     }
 
     public String getPushId() {
+
         return pushId;
     }
 
