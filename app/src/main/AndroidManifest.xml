@@ -14,20 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.MainActivity">
         </activity>
 
-        <activity android:name=".CalorieIntake">
+        <activity android:name=".ui.CalorieIntake">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.epicodus.getfit.MainActivity" />
+                android:value="com.epicodus.getfit.ui.MainActivity" />
         </activity>
 
-        <activity android:name=".NutritionListActivity" />
-        <activity android:name=".NutritionDetailActivity" />
-        <activity android:name=".SaveFoodListActivity" />
-        <activity android:name=".CreateAccountActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".ui.NutritionListActivity" />
+        <activity android:name=".ui.NutritionDetailActivity" />
+        <activity android:name=".ui.SaveFoodListActivity" />
+        <activity android:name=".ui.CreateAccountActivity" />
+        <activity android:name=".ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

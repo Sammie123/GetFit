@@ -2,6 +2,8 @@ package com.epicodus.getfit;
 
 import android.support.test.rule.ActivityTestRule;
 
+import com.epicodus.getfit.ui.CalorieIntake;
+
 import org.junit.Rule;
 import org.junit.Test;
 

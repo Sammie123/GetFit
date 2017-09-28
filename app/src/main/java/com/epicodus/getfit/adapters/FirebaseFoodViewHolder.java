@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.epicodus.getfit.Constants;
-import com.epicodus.getfit.NutritionDetailActivity;
+import com.epicodus.getfit.ui.NutritionDetailActivity;
 import com.epicodus.getfit.R;
 import com.epicodus.getfit.models.Food;
 import com.google.firebase.database.DataSnapshot;

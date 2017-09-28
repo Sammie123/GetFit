@@ -1,9 +1,10 @@
-package com.epicodus.getfit;
+package com.epicodus.getfit.ui;
 
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.epicodus.getfit.R;
 import com.epicodus.getfit.adapters.NutritionPagerAdapter;
 import com.epicodus.getfit.models.Food;
 

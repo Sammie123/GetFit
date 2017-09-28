@@ -1,10 +1,12 @@
-package com.epicodus.getfit;
+package com.epicodus.getfit.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.epicodus.getfit.Constants;
+import com.epicodus.getfit.R;
 import com.epicodus.getfit.adapters.FirebaseFoodViewHolder;
 import com.epicodus.getfit.models.Food;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;

@@ -1,4 +1,4 @@
-package com.epicodus.getfit;
+package com.epicodus.getfit.ui;
 
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -12,11 +12,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 
+import com.epicodus.getfit.Constants;
+import com.epicodus.getfit.R;
 import com.epicodus.getfit.adapters.FoodListAdapter;
 import com.epicodus.getfit.models.Food;
 import com.epicodus.getfit.services.YummlyService;

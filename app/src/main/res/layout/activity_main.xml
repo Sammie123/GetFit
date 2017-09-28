@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.epicodus.getfit.MainActivity">
+    tools:context="com.epicodus.getfit.ui.MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
