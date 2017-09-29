@@ -19,7 +19,7 @@ import com.squareup.picasso.Picasso;
 import org.parceler.Parcels;
 import java.util.ArrayList;
 
-public class FirebaseFoodViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener {
+public class FirebaseFoodViewHolder extends RecyclerView.ViewHolder {
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
     public ImageView mFoodImageView;
@@ -31,7 +31,6 @@ public class FirebaseFoodViewHolder extends RecyclerView.ViewHolder  implements 
         super(itemView);
         mView = itemView;
         mContext = itemView.getContext();
-        itemView.setOnClickListener(this);
     }
 
     public void bindFood(Food food) {
@@ -45,31 +44,5 @@ public class FirebaseFoodViewHolder extends RecyclerView.ViewHolder  implements 
                 .into(mFoodImageView);
 
         nameTextView.setText(food.getName());
-    }
-
-    @Override
-    public void onClick(View view) {
-        final ArrayList<Food> foods = new ArrayList<>();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_FOOD);
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                    foods.add(snapshot.getValue(Food.class));
-                }
-
-                int itemPosition = getLayoutPosition();
-                Intent intent = new Intent(mContext, NutritionDetailActivity.class);
-                intent.putExtra("position", itemPosition + "");
-                intent.putExtra("foods", Parcels.wrap(foods));
-
-                mContext.startActivity(intent);
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError){
-
-            }
-        });
     }
 }

@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -37,7 +38,6 @@ public class SaveFoodListActivity extends AppCompatActivity implements OnStartDr
         setContentView(R.layout.activity_nutrition);
         ButterKnife.bind(this);
 
-        mFoodReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_FOOD);
         setUpFirebaseAdapter();
     }
 
@@ -45,12 +45,12 @@ public class SaveFoodListActivity extends AppCompatActivity implements OnStartDr
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
 
-        mFoodReference = FirebaseDatabase
-                .getInstance()
+        Query query = FirebaseDatabase.getInstance()
                 .getReference(Constants.FIREBASE_CHILD_FOOD)
-                .child(uid);
+                .child(uid)
+                .orderByChild(Constants.FIREBASE_QUERY_INDEX);
 
-        mFirebaseAdapter = new FirebaseFoodListAdapter(Food.class, R.layout.food_list_item_drag, FirebaseFoodViewHolder.class, mFoodReference, this, this);
+        mFirebaseAdapter = new FirebaseFoodListAdapter(Food.class, R.layout.food_list_item_drag, FirebaseFoodViewHolder.class, query, this, this);
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
