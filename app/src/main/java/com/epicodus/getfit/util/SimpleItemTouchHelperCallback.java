@@ -33,7 +33,7 @@ public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
         if (source.getItemViewType() != targer.getItemViewType()) {
             return false;
         }
-        mAdapter.OnItemMove(source.getAdapterPosition(), targer.getAdapterPosition());
+        mAdapter.onItemMove(source.getAdapterPosition(), targer.getAdapterPosition());
         return true;
     }
 

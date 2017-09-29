@@ -1,6 +1,6 @@
 package com.epicodus.getfit.util;
 
-public interface itemTouchHelperAdapter {
+public interface ItemTouchHelperAdapter {
     boolean onItemMove (int fromPosition, int toPosition);
     void onItemDismiss(int position);
 }
