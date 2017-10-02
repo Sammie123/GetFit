@@ -8,8 +8,8 @@
     <fragment
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:name="com.epicodus.getfit.ui.FoodListFragment"
         android:id="@+id/fragmentFoodList"
+        android:name="com.epicodus.getfit.ui.SavedFoodListFragment"
         tools:layout="@layout/fragment_food_list"/>
 
 </RelativeLayout>

@@ -18,7 +18,7 @@ public class NutritionPagerAdapter extends FragmentPagerAdapter{
 
     @Override
     public Fragment getItem(int position) {
-        return NutritionDetailFragment.newInstance(mFoods.get(position));
+        return NutritionDetailFragment.newInstance(mFoods, position);
     }
 
     @Override

@@ -2,11 +2,17 @@ package com.epicodus.getfit.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MotionEventCompat;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.epicodus.getfit.Constants;
 import com.epicodus.getfit.NutritionDetailFragment;
+import com.epicodus.getfit.R;
 import com.epicodus.getfit.models.Food;
 import com.epicodus.getfit.ui.NutritionDetailActivity;
 import com.epicodus.getfit.util.OnStartDragListener;
@@ -31,6 +37,7 @@ public class FirebaseFoodListAdapter extends FirebaseRecyclerAdapter <Food, Fire
     private Context mContext;
     private ChildEventListener mChildEventListener;
     private ArrayList<Food> mFoods = new ArrayList<>();
+    private int mOrientation;
 
 
     public FirebaseFoodListAdapter(Class<Food> modelClass, int modelLayout, Class<FirebaseFoodViewHolder> viewHolderClass, Query ref, OnStartDragListener onStartDragListener, Context context) {
@@ -70,6 +77,11 @@ public class FirebaseFoodListAdapter extends FirebaseRecyclerAdapter <Food, Fire
     @Override
     protected void populateViewHolder(final FirebaseFoodViewHolder viewHolder, Food model, int position) {
         viewHolder.bindFood(model);
+
+        mOrientation = viewHolder.itemView.getResources().getConfiguration().orientation;
+        if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+            createDetailFragment(0);
+        }
         viewHolder.mFoodImageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -83,12 +95,24 @@ public class FirebaseFoodListAdapter extends FirebaseRecyclerAdapter <Food, Fire
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, NutritionDetailActivity.class);
-                intent.putExtra("position", viewHolder.getAdapterPosition());
-                intent.putExtra("foods", Parcels.wrap(mFoods));
-                mContext.startActivity(intent);
+                int itemPosition = viewHolder.getAdapterPosition();
+                if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    createDetailFragment(itemPosition);
+                } else {
+                    Intent intent = new Intent(mContext, NutritionDetailActivity.class);
+                    intent.putExtra(Constants.EXTRA_KEY_POSITION, itemPosition);
+                    intent.putExtra(Constants.EXTRA_KEY_FOODS, Parcels.wrap(mFoods));
+                    mContext.startActivity(intent);
+                }
             }
         });
+    }
+
+    private void createDetailFragment(int position) {
+        NutritionDetailFragment detailFragment = NutritionDetailFragment.newInstance(mFoods, position);
+        FragmentTransaction ft = ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.foodDetailContainer, detailFragment);
+        ft. commit();
     }
 
     @Override

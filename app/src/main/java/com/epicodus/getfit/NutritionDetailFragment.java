@@ -19,6 +19,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -29,13 +33,15 @@ public class NutritionDetailFragment extends Fragment implements  View.OnClickLi
     @Bind(R.id.foodNameTextView) TextView mFoodNameTextView;
     @Bind(R.id.saveFoodButton) Button mSaveFoodButton;
     @Bind(R.id.ingredientsTextView) TextView mIngredientsTextView;
-
+    private ArrayList<Food> mFoods;
+    private int mPosition;
     private Food mFood;
 
-    public static NutritionDetailFragment newInstance(Food food) {
+    public static NutritionDetailFragment newInstance(ArrayList<Food> foods, Integer position) {
         NutritionDetailFragment nutritionDetailFragment = new NutritionDetailFragment();
         Bundle args = new Bundle();
-        args.putParcelable("food", Parcels.wrap(food));
+        args.putParcelable(Constants.EXTRA_KEY_FOODS, Parcels.wrap(foods));
+        args.putInt(Constants.EXTRA_KEY_POSITION, position);
         nutritionDetailFragment.setArguments(args);
         return nutritionDetailFragment;
     }
@@ -43,7 +49,9 @@ public class NutritionDetailFragment extends Fragment implements  View.OnClickLi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mFood = Parcels.unwrap(getArguments().getParcelable("food"));
+        mFoods = Parcels.unwrap(getArguments().getParcelable(Constants.EXTRA_KEY_FOODS));
+        mPosition = getArguments().getInt(Constants.EXTRA_KEY_POSITION);
+        mFood = mFoods.get(mPosition);
     }
 
     @Override

@@ -9,4 +9,6 @@ public class Constants {
     public static final String FIREBASE_CHILD_SEARCHED_FOOD = "searchedFood";
     public static final String FIREBASE_CHILD_FOOD = "foods";
     public static final String FIREBASE_QUERY_INDEX = "index";
+    public static final String EXTRA_KEY_POSITION = "position";
+    public static final String EXTRA_KEY_FOODS = "foods";
 }

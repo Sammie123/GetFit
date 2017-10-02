@@ -23,53 +23,13 @@ import com.google.firebase.database.Query;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class SaveFoodListActivity extends AppCompatActivity implements OnStartDragListener{
-    private DatabaseReference mFoodReference;
-    private FirebaseFoodListAdapter mFirebaseAdapter;
-    private ItemTouchHelper mItemTouchHelper;
-
-    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
-
+public class SaveFoodListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_nutrition);
-        ButterKnife.bind(this);
-
-        setUpFirebaseAdapter();
-    }
-
-    private void setUpFirebaseAdapter() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = user.getUid();
-
-        Query query = FirebaseDatabase.getInstance()
-                .getReference(Constants.FIREBASE_CHILD_FOOD)
-                .child(uid)
-                .orderByChild(Constants.FIREBASE_QUERY_INDEX);
-
-        mFirebaseAdapter = new FirebaseFoodListAdapter(Food.class, R.layout.food_list_item_drag, FirebaseFoodViewHolder.class, query, this, this);
-
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(mFirebaseAdapter);
-
-        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mFirebaseAdapter);
-        mItemTouchHelper = new ItemTouchHelper(callback);
-        mItemTouchHelper.attachToRecyclerView(mRecyclerView);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mFirebaseAdapter.cleanup();
-    }
-
-    @Override
-    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
-        mItemTouchHelper.startDrag(viewHolder);
+        setContentView(R.layout.activity_saved_food_list);
     }
 }
 
